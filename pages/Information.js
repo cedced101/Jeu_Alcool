@@ -4,10 +4,11 @@ import Defis from '../components/Defis.js';
 import Popups from '../components/Popups.js';
 
 const Information = ({ navigation, route }) => {
-  const { itemId } = route.params;
-  const
-  const [postText] = React.useState(itemId);
-  const Word = Defis[parseInt(Math.random() * ((Defis.length - 1) - 0) + 0)];
+  const { newPoints } = route.params;
+  const { challState } = route.params;
+  const [state] = React.useState(challState);
+  const instruction = (state ? "Félicitations!" : "Bois dumbass");
+  const [postText] = React.useState(newPoints);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, padding: 16 }}>
@@ -18,27 +19,20 @@ const Information = ({ navigation, route }) => {
             justifyContent: 'center',
           }}>
           <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16
-            }}>
-            Félicitations!
+          style={{
+            fontSize: 25,
+            textAlign: 'center',
+            marginBottom: 16
+          }}>
+          {instruction}
           </Text>
-          <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16
-            }}>
-
-            {Word}
+          <Text>
+          Tu a gagné {JSON.stringify(newPoints)} points! {"\n"}
           </Text>
-          <Text>itemId: {JSON.stringify(itemId)}</Text>
           <Button title="Suivant"
             onPress={() => {
               navigation.navigate('Home', {
-                post: postText
+                points: newPoints
               });
             }}
           />
@@ -46,6 +40,7 @@ const Information = ({ navigation, route }) => {
       </View>
     </SafeAreaView>
   );
+
 }
 
 export default Information;
