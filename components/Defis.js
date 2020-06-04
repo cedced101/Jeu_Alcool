@@ -37,6 +37,4 @@ const Defis = [
 
     ];
 
-export default Defis; 
-
-//TD
+export default Defis;
