@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, View, Text, SafeAreaView } from 'react-native';
-
+var score = 0;
 const Home = ({ navigation, route }) => {
   React.useEffect(() => {
     if (route.params?.post) {
@@ -8,6 +8,8 @@ const Home = ({ navigation, route }) => {
       // For example, send the post to the server
     }
   }, [route.params?.post]);
+var point = route.params?.post;
+score = score + parseInt(point);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -49,6 +51,14 @@ const Home = ({ navigation, route }) => {
               marginBottom: 16
             }}>
             Post: {route.params?.post}
+          </Text>
+          <Text
+            style={{
+              fontSize: 25,
+              textAlign: 'center',
+              marginBottom: 16
+            }}>
+            Post: {score.toString()}
           </Text>
         </View>
       </View>

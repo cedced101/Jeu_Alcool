@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { Button, View, Text, SafeAreaView } from 'react-native';
-import Defis from './components/Defis';
-import Popups from './components/Popups';
+//import Defis from './components/Defis';
+//import Popups from './components/Popups';
 
-GenerateRandomNumber=()=>
-  {
-    const Word = Defis[new Random().nextInt(Defis.length)];
+/* GenerateRandomNumber=()=>
+ {
+    const test = Defis[new Random().nextInt(Defis.length)];
     this.setState({
-      NumberHolder : Word
+      NumberHolder : test
     })
   }
+*/
 
 const Information = ({ navigation, route }) => {
   const { itemId } = route.params;
@@ -37,8 +38,6 @@ const Information = ({ navigation, route }) => {
               textAlign: 'center',
               marginBottom: 16
             }}>
-            
-            {Word}
           </Text>
           <Text>itemId: {JSON.stringify(itemId)}</Text>
           <Button title="Suivant"
