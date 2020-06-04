@@ -3,6 +3,13 @@ import { Button, View, Text, SafeAreaView } from 'react-native';
 var score = 0;
 const Home = ({ navigation, route }) => {
   React.useEffect(() => {
+    if (route.params?.players) {
+      // Post updated, do something with `route.params.post`
+      // For example, send the post to the server
+    }
+  }, [route.params?.players]);
+  var players = route.params?.players;
+  React.useEffect(() => {
     if (route.params?.post) {
       // Post updated, do something with `route.params.post`
       // For example, send the post to the server
@@ -20,6 +27,14 @@ score = score + parseInt(point);
             alignItems: 'center',
             justifyContent: 'center',
           }}>
+          <Text
+            style={{
+              fontSize: 25,
+              textAlign: 'center',
+              marginBottom: 16
+            }}>
+            Post: {route.params?.players}
+          </Text>
           <Text
             style={{
               fontSize: 25,
@@ -50,7 +65,7 @@ score = score + parseInt(point);
               textAlign: 'center',
               marginBottom: 16
             }}>
-            Post: {route.params?.post}
+            Post: {point}
           </Text>
           <Text
             style={{

@@ -16,7 +16,21 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Login">
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{
+          title: 'Login', //Set Header Title
+          headerStyle: {
+            backgroundColor: '#f4511e', //Set Header color
+          },
+          headerTintColor: '#fff', //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
         <Stack.Screen
           name="Home"
           component={Home}
