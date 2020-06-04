@@ -1,19 +1,12 @@
 import * as React from 'react';
 import { Button, View, Text, SafeAreaView } from 'react-native';
-import Defis from './components/Defis';
-import Popups from './components/Popups';
-
-GenerateRandomNumber=()=>
-  {
-    const Word = Defis[new Random().nextInt(Defis.length)];
-    this.setState({
-      NumberHolder : Word
-    })
-  }
+import Defis from '../components/Defis.js';
+import Popups from '../components/Popups.js';
 
 const Information = ({ navigation, route }) => {
   const { itemId } = route.params;
   const [postText] = React.useState(itemId);
+  const Word = Defis[parseInt(Math.random() * ((Defis.length - 1) - 0) + 0)];
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, padding: 16 }}>
@@ -37,7 +30,7 @@ const Information = ({ navigation, route }) => {
               textAlign: 'center',
               marginBottom: 16
             }}>
-            
+
             {Word}
           </Text>
           <Text>itemId: {JSON.stringify(itemId)}</Text>
