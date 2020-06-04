@@ -5,6 +5,7 @@ import Popups from '../components/Popups.js';
 
 const Information = ({ navigation, route }) => {
   const { itemId } = route.params;
+  const
   const [postText] = React.useState(itemId);
   const Word = Defis[parseInt(Math.random() * ((Defis.length - 1) - 0) + 0)];
   return (
@@ -22,7 +23,7 @@ const Information = ({ navigation, route }) => {
               textAlign: 'center',
               marginBottom: 16
             }}>
-            This is Second Page of the App
+            Félicitations!
           </Text>
           <Text
             style={{
