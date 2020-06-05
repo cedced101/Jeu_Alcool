@@ -5,7 +5,6 @@ import Popups from '../components/Popups.js';
 var score = 0;
 const Home = ({ navigation, route }) => {
   React.useEffect(() => {
-<<<<<<< HEAD
     if (route.params?.players) {
       // Post updated, do something with `route.params.post`
       // For example, send the post to the server
@@ -14,9 +13,6 @@ const Home = ({ navigation, route }) => {
   var players = route.params?.players;
   React.useEffect(() => {
     if (route.params?.post) {
-=======
-    if (route.params?.points) {
->>>>>>> dc9cd623cb61e14e503e6194e16debe0b09c62d5
       // Post updated, do something with `route.params.post`
       // For example, send the post to the server
     }
@@ -41,8 +37,9 @@ const word = Defis[parseInt(Math.random() * ((Defis.length - 1) - 0) + 0)];
               textAlign: 'center',
               marginBottom: 16
             }}>
-<<<<<<< HEAD
-            Post: {route.params?.players}
+            C'est le tour de {players} _______
+            {"\n"}{"\n"}
+            {word}
           </Text>
           <Text
             style={{
@@ -50,12 +47,7 @@ const word = Defis[parseInt(Math.random() * ((Defis.length - 1) - 0) + 0)];
               textAlign: 'center',
               marginBottom: 16
             }}>
-            This is the First Page of the app
-=======
-            C'est le tour de _______
-            {"\n"}{"\n"}
-            {word}
->>>>>>> dc9cd623cb61e14e503e6194e16debe0b09c62d5
+            Vous avez {score} points!
           </Text>
           <View>
             <Button
@@ -65,26 +57,6 @@ const word = Defis[parseInt(Math.random() * ((Defis.length - 1) - 0) + 0)];
                       challState: true,
                     });
                   }}
-<<<<<<< HEAD
-            title="Raté"
-          />
-          <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16
-            }}>
-            Post: {point}
-          </Text>
-          <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16
-            }}>
-            Post: {score.toString()}
-          </Text>
-=======
               title="Réussi"
             />
             <Button
@@ -97,7 +69,6 @@ const word = Defis[parseInt(Math.random() * ((Defis.length - 1) - 0) + 0)];
               title="Raté"
             />
           </View>
->>>>>>> dc9cd623cb61e14e503e6194e16debe0b09c62d5
         </View>
       </View>
     </SafeAreaView>

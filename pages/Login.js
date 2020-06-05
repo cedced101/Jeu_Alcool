@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, View, Text, SafeAreaView, TextInput } from 'react-native';
-var cpt = 0;
+cpt = 0;
 const players = [
 ]
 const Login = ({ navigation, route }) => {
@@ -21,9 +21,9 @@ const Login = ({ navigation, route }) => {
           />
           <Button
             onPress={() => {
-                      var player = {name: value, score: 0, id: cpt};                      
+                      var player = {name: value, score: 0, id: cpt};
                       players.push(player);
-                      alert(players[0].id)
+                      alert(players[0].id);
                       cpt++;
                 }}
             title="Add player"
@@ -37,7 +37,7 @@ const Login = ({ navigation, route }) => {
           <Button
             onPress={() => {
                     navigation.navigate('Home', {
-                      players: players[cpt].id
+                      players: players[0].id
                     });
                   }}
             title="Go"
