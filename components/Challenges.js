@@ -1,5 +1,5 @@
 import * as React from 'react';
-const Defis = [
+const Challenges = [
       'Shot or text',
       'C&aposest quoi les odds sur 4',
       '2 vérités 1 mensonge',
@@ -37,4 +37,4 @@ const Defis = [
 
     ];
 
-export default Defis;
+export default Challenges;

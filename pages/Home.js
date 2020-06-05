@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, View, Text, SafeAreaView } from 'react-native';
-import Defis from '../components/Defis.js';
+import Challenges from '../components/Challenges.js';
 import Popups from '../components/Popups.js';
 var score = 0;
 const Home = ({ navigation, route }) => {
@@ -20,7 +20,7 @@ const Home = ({ navigation, route }) => {
 var point = route.params?.post;
 score = score + parseInt(point);
 
-const word = Defis[parseInt(Math.random() * ((Defis.length - 1) - 0) + 0)];
+const word = Challenges[parseInt(Math.random() * ((Challenges.length - 1) - 0) + 0)];
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
