@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, View, Text, SafeAreaView } from 'react-native';
-import Defis from '../components/Defis.js';
+import Challenges from '../components/Challenges.js';
 import Popups from '../components/Popups.js';
 
 const Information = ({ navigation, route }) => {
@@ -8,7 +8,6 @@ const Information = ({ navigation, route }) => {
   const { challState } = route.params;
   const [state] = React.useState(challState);
   const instruction = (state ? "Félicitations!" : "Bois dumbass");
-  const [postText] = React.useState(newPoints);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, padding: 16 }}>
@@ -27,7 +26,7 @@ const Information = ({ navigation, route }) => {
           {instruction}
           </Text>
           <Text>
-          Tu a gagné {JSON.stringify(newPoints)} points! {"\n"}
+          + {JSON.stringify(newPoints)} points! {"\n"}
           </Text>
           <Button title="Suivant"
             onPress={() => {
