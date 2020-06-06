@@ -26,10 +26,15 @@ const Information = ({ navigation, route }) => {
           }}>
           {instruction}
           </Text>
-          <Text>
-          + {JSON.stringify(newPoints)} points! {"\n"}
+          <Text
+          style={{
+            textAlign: 'center'
+          }}>
+          + {JSON.stringify(newPoints)} points!
+          {"\n"}
           {"\n"}
           Total points : {JSON.stringify(currentScore)}
+          {"\n"}
           </Text>
           <Button title="Suivant"
             onPress={() => {

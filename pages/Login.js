@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { Button, View, Text, SafeAreaView, TextInput } from 'react-native';
+import { Button, View, Text, SafeAreaView, TextInput, ListView } from 'react-native';
 cpt = 0;
 const players = [
-]
-
+];
+function ShowPlayers(props) {
+  alert('test')
+  return <View><Text>{props.name}</Text></View>
+}
 const Login = ({ navigation, route }) => {
 
   const [value, onChangeText] = React.useState('');
@@ -25,9 +28,10 @@ const Login = ({ navigation, route }) => {
           />
           <Button
           onPress={() => {
+            ShowPlayers(players);
             var player = {name: value, score: 0, id: cpt};
             players.push(player);
-            cpt++;
+            cpt++;        
             //value = '';
           }}
           title="Add player"
