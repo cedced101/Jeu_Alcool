@@ -3,7 +3,13 @@ import { Button, View, Text, SafeAreaView } from 'react-native';
 import Challenges from '../components/Challenges.js';
 import Popups from '../components/Popups.js';
 var score = 0;
+var turnNum = 0;
+var turnCount = 0;
+var usedChalls = [];
+var allPlayers = [];
+
 const Home = ({ navigation, route }) => {
+
   React.useEffect(() => {
     if (route.params?.players) {
       // Post updated, do something with `route.params.post`
@@ -11,62 +17,95 @@ const Home = ({ navigation, route }) => {
     }
   }, [route.params?.players]);
   var players = route.params?.players;
-  React.useEffect(() => {
-    if (route.params?.post) {
-      // Post updated, do something with `route.params.post`
-      // For example, send the post to the server
-    }
-  }, [route.params?.points]);
-var point = route.params?.post;
-score = score + parseInt(point);
+  if (allPlayers.length == 0) {
+    allPlayers = JSON.parse(players);
+  }
 
-const word = Challenges[parseInt(Math.random() * ((Challenges.length - 1) - 0) + 0)];
+  var chall;
+
+  do  {
+    if (usedChalls.length == Challenges.length) {
+      alert('Partie terminée!');
+      break;
+    }
+    chall = parseInt(Math.random() * (Challenges.length));
+  } while (usedChalls.includes(Challenges[chall]))
+
+  usedChalls.push(Challenges[chall]);
+
+  const popupIndex = parseInt(Math.random() * (Popups.length));
+
+  const word = Challenges[chall];
+
+  if (turnCount != 0 && turnNum == 0) {
+    alert(Popups[popupIndex]);
+  }
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1 , padding: 16}}>
         <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
           <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16
-            }}>
-            C'est le tour de {players} _______
-            {"\n"}{"\n"}
-            {word}
+          style={{
+            fontSize: 25,
+            textAlign: 'center',
+            marginBottom: 16
+          }}>
+          C'est le tour de {allPlayers[turnNum].name}
+          {"\n"}{"\n"}
+          {word}
           </Text>
           <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16
-            }}>
-            Vous avez {score} points!
+          style={{
+            fontSize: 25,
+            textAlign: 'center',
+            marginBottom: 16
+          }}>
+          Vous avez {allPlayers[turnNum].score} points!
           </Text>
           <View>
             <Button
-              onPress={() => {
-                        navigation.navigate('Information', {
-                      newPoints: Math.floor(Math.random() * 4 + 2),
-                      challState: true,
-                    });
-                  }}
-              title="Réussi"
+            onPress={() => {
+              var newPoints = Math.floor(Math.random() * 4 + 2);
+              allPlayers[turnNum].score += newPoints;
+              var currentScore = allPlayers[turnNum].score;
+              if (turnNum >= allPlayers.length - 1) {
+                turnNum = 0;
+                turnCount++;
+              }
+              else {
+                turnNum++;
+              }
+              navigation.navigate('Information', {
+                newPoints: newPoints,
+                challState: true,
+                currentScore: currentScore,
+              });
+            }}
+            title="Réussi"
             />
             <Button
             onPress={() => {
-                      navigation.navigate('Information', {
-                        newPoints: 0,
-                        challState: false,
-                      });
-                    }}
-              title="Raté"
+              var currentScore = allPlayers[turnNum].score;
+              if (turnNum >= allPlayers.length - 1) {
+                turnNum = 0;
+                turnCount++;
+              }
+              else {
+                turnNum++;
+              }
+              navigation.navigate('Information', {
+                newPoints: 0,
+                challState: false,
+                currentScore: currentScore,
+              });
+            }}
+            title="Raté"
             />
           </View>
         </View>

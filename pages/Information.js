@@ -6,6 +6,7 @@ import Popups from '../components/Popups.js';
 const Information = ({ navigation, route }) => {
   const { newPoints } = route.params;
   const { challState } = route.params;
+  const { currentScore } = route.params;
   const [state] = React.useState(challState);
   const instruction = (state ? "Félicitations!" : "Bois dumbass");
   return (
@@ -27,6 +28,8 @@ const Information = ({ navigation, route }) => {
           </Text>
           <Text>
           + {JSON.stringify(newPoints)} points! {"\n"}
+          {"\n"}
+          Total points : {JSON.stringify(currentScore)}
           </Text>
           <Button title="Suivant"
             onPress={() => {
