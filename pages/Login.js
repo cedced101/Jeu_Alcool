@@ -4,7 +4,7 @@ cpt = 0;
 const players = [
 ];
 function ShowPlayers(props) {
-  alert('test')
+  alert('test');
   return <View><Text>{props.name}</Text></View>
 }
 const Login = ({ navigation, route }) => {
@@ -28,10 +28,11 @@ const Login = ({ navigation, route }) => {
           />
           <Button
           onPress={() => {
+            alert('test1');
             ShowPlayers(players);
             var player = {name: value, score: 0, id: cpt};
             players.push(player);
-            cpt++;        
+            cpt++;
             //value = '';
           }}
           title="Add player"
