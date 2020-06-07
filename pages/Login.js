@@ -1,12 +1,22 @@
 import * as React from 'react';
+import ReactDOM from 'react-dom';
 import { Button, View, Text, SafeAreaView, TextInput, ListView } from 'react-native';
 cpt = 0;
 const players = [
 ];
-function ShowPlayers(props) {
-  alert('test');
-  return <View><Text>{props.name}</Text></View>
+class ShowPlayers extends React.Component {
+  render(){
+    return <h1> Hello, {this.props.name}</h1>;
+  }
 }
+/*function ShowPlayers(props) {
+  return <View><Text>{props.name}</Text></View>
+}*/
+// On ne peut pas utiliser document.[...] en react native( Trouver une nouvelle solution)
+const element = <ShowPlayers name = "Sara" />;
+ReactDOM.render(element,
+  window.getElementById('root'));
+
 const Login = ({ navigation, route }) => {
 
   const [value, onChangeText] = React.useState('');
@@ -28,10 +38,9 @@ const Login = ({ navigation, route }) => {
           />
           <Button
           onPress={() => {
-            alert('test1');
-            ShowPlayers(players);
             var player = {name: value, score: 0, id: cpt};
             players.push(player);
+            Welcome
             cpt++;
             //value = '';
           }}
@@ -52,6 +61,7 @@ const Login = ({ navigation, route }) => {
           }}
           title="Go"
           />
+          <View>{rows}</View>
         </View>
       </View>
     </SafeAreaView>
