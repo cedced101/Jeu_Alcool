@@ -1,4 +1,4 @@
-/*import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 const { height, width } = Dimensions.get('window');
 class ListPlayers extends Component {
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
     width: width / 1.5
   }
 });
-export default ListPlayers;*/
+export default ListPlayers;

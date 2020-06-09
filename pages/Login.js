@@ -1,13 +1,20 @@
-import * as React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Button, View, Text, SafeAreaView, TextInput, ScrollView } from 'react-native';
 import uuid from 'uuid/v1';
-//import ListPlayers from '../components/ListPlayers';
+import ListPlayers from '../components/ListPlayers';
+import InputPlayer from '../components/InputPlayer';
 var cpt = 0;
 const players = [
 ];
-//generate a random id for player
-var idPlayer = uuid();
+
+/*class FillScrollView extends React.Component {
+  render(){
+    return(
+      <ScrollView>{players.name}</ScrollView>
+    );
+  }
+}
+
 /*function ShowPlayers(props) {
   return <View><Text>{props.name}</Text></View>
 }*/
@@ -42,7 +49,7 @@ var idPlayer = uuid();
   }
 }*/
 
-const Login = ({ navigation, route }) => {
+/*const Login = ({ navigation, route }) => {
 
   const [inputValue, onChangeText] = React.useState('');
   var allPlayers = [];
@@ -62,9 +69,11 @@ const Login = ({ navigation, route }) => {
             />
             <Button
             onPress={() => {
-              var player = {name: inputValue, score: 0, id: cpt};
+              //generate a random id for player
+              var idPlayer = uuid();
+              var player = {name: inputValue, score: 0, id: idPlayer};
               players.push(player);
-              FillScrollView(player);
+//              FillScrollView(player);
               cpt++;
               //inputValue = '';
             }}
@@ -86,11 +95,119 @@ const Login = ({ navigation, route }) => {
             title="Go"
             />
             <ScrollView>
+            {Object.values(allPlayers)
+                .reverse()
+                .map(item => (
+                  <ListPlayers
+                    key={item.id}
+                    {...item}
+                  />
+                ))}
             </ScrollView>
           </View>
         </View>
       </SafeAreaView>
     );
-}
+}*/
+/*function NavigateHome(props) {
+  const navigation = props;
+  navigation.navigate('Home', {
+  players: JSON.stringify(allPlayers)
+  });
+}*/
+function FillScrollView(props){
+    alert(props);
+    /*const player = props;
+    Object.keys(player).map(function(key, index) {
+      player[key] = player.name;
+    });
+    return(
+      alert('tt')
+    );*/
+  }
 
-export default Login;
+export default class Login extends React.Component {
+  state = {
+    inputValue: '',
+    loadingItems: false,
+    allItems: {},
+    isCompleted: false
+  };
+  newInputValue = value => {
+  this.setState({
+    inputValue: value
+  });
+};
+onDoneAddItem = () => {
+    const { inputValue } = this.state;
+    if (inputValue !== '') {
+      this.setState(prevState => {
+        const id = uuid();
+        const newItemObject = {
+          [id]: {
+            id,
+            text: inputValue
+          }
+        };
+        const newState = {
+          ...prevState,
+          inputValue: '',
+          allItems: {
+            ...prevState.allItems,
+            ...newItemObject
+          }
+        };
+        return { ...newState };
+      });
+    }
+  };
+
+  render() {
+//    var allPlayers = [];
+    const { inputValue, allItems } = this.state;
+    return(
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flex: 1 , padding: 16}}>
+          <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <InputPlayer
+            inputValue={inputValue}
+            onChangeText={this.newInputValue}
+            onDoneAddItem={this.onDoneAddItem}
+          />
+            <Button
+            onPress={() => {
+              players.splice(-1,1);
+            }}
+            title="Erase player"
+            />
+            <Button
+            onPress={() => {
+              allPlayers = players;
+              //NavigateHome();
+              this.props.navigation.navigate('Home', {
+                players: JSON.stringify(allPlayers)
+              });
+            }}
+            title="Go"
+            />
+            <ScrollView>
+            {Object.values(allItems)
+                .reverse()
+                .map(item => (
+                  <ListPlayers
+                    key={item.id}
+                    {...item}
+                  />
+                ))}
+            </ScrollView>
+          </View>
+        </View>
+      </SafeAreaView>
+    );
+  }
+}

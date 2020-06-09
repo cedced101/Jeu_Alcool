@@ -1,4 +1,4 @@
-/*import React from 'react';
+import React from 'react';
 import { StyleSheet, TextInput} from 'react-native';
 const InputPlayer = ({ inputValue, onChangeText, onDoneAddItem }) => (
   <TextInput
@@ -6,7 +6,6 @@ const InputPlayer = ({ inputValue, onChangeText, onDoneAddItem }) => (
     value={inputValue}
     onChangeText={onChangeText}
     placeholder="Type here to add note."
-    placeholderTextColor={inputPlaceholder}
     multiline={true}
     autoCapitalize="sentences"
     underlineColorAndroid="transparent"
@@ -27,4 +26,4 @@ const styles = StyleSheet.create({
     fontWeight: '500'
   }
 });
-export default InputPlayer;*/
+export default InputPlayer;
