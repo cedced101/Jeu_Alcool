@@ -2,29 +2,50 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { Button, View, Text, SafeAreaView, TextInput, ScrollView } from 'react-native';
 import uuid from 'uuid/v1';
-import ListPlayers from './components/ListPlayers';
-//cpt = 0;
+//import ListPlayers from '../components/ListPlayers';
+var cpt = 0;
 const players = [
 ];
 //generate a random id for player
-const idPlayer = uuid();
-class ShowPlayers extends React.Component {
-  state = {
-    inputValue:'',
-    players: [],
-  };
-
-}
+var idPlayer = uuid();
 /*function ShowPlayers(props) {
   return <View><Text>{props.name}</Text></View>
 }*/
-// On ne peut pas utiliser document.[...] en react native( Trouver une nouvelle solution)
+/*function FillScrollView(props){
+  class ScrollPlayer extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {''};
+    }
+
+    render() {
+        const player = props;
+        Object.keys(player).map(function(key, index) {
+        player[key] = player.name;
+        return (
+          <ScrollView>{player.name}</ScrollView>
+        );
+      }
+    }
+  }
+}
+/*function FillScrollView(props){
+  render() {
+    const player = props;
+    Object.keys(player).map(function(key, index) {
+      player[key] = player.name;
+    });
+    return(
+      <ScrollView>{player.name}</ScrollView>
+      alert(player.name);
+    );
+  }
+}*/
 
 const Login = ({ navigation, route }) => {
 
   const [inputValue, onChangeText] = React.useState('');
   var allPlayers = [];
-  render() {
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1 , padding: 16}}>
@@ -41,8 +62,9 @@ const Login = ({ navigation, route }) => {
             />
             <Button
             onPress={() => {
-              var player = {name: inputValue, score: 0, id: idPlayer};
+              var player = {name: inputValue, score: 0, id: cpt};
               players.push(player);
+              FillScrollView(player);
               cpt++;
               //inputValue = '';
             }}
@@ -64,21 +86,11 @@ const Login = ({ navigation, route }) => {
             title="Go"
             />
             <ScrollView>
-              {Object.values(allPlayers)
-                .reverse()
-                .map(item = (
-                  <ListPlayers
-                    key={item.id}
-                    {...item}
-                    deleteItem={this.deleteItem}
-                  />
-                })}
             </ScrollView>
           </View>
         </View>
       </SafeAreaView>
     );
-  }
 }
 
 export default Login;
