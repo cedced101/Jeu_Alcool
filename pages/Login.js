@@ -161,6 +161,15 @@ onDoneAddItem = () => {
       });
     }
   };
+  delPlayer = () => {
+    alert(players);
+    if (players.length > 0)
+    {
+      alert(players);
+      players.splice(-1,1);
+      alert(players);
+    }
+  }
 
   render() {
 //    var allPlayers = [];
@@ -181,12 +190,6 @@ onDoneAddItem = () => {
           />
             <Button
             onPress={() => {
-              players.splice(-1,1);
-            }}
-            title="Erase player"
-            />
-            <Button
-            onPress={() => {
               allPlayers = players;
               //NavigateHome();
               this.props.navigation.navigate('Home', {
@@ -195,7 +198,7 @@ onDoneAddItem = () => {
             }}
             title="Go"
             />
-            <ScrollView>
+            <ScrollView delPlayer={this.delPlayer}>
             {Object.values(allItems)
                 .reverse()
                 .map(item => (

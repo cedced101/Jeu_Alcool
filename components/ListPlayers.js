@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
+import { View, Button, Text, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 const { height, width } = Dimensions.get('window');
 class ListPlayers extends Component {
   render() {
@@ -8,6 +8,12 @@ class ListPlayers extends Component {
       <View style ={styles.container}>
         <View style ={styles.column}>
           <Text>{text}</Text>
+        </View>
+        <View style ={styles.column}>
+        <Button
+        onPress={this.props.delPlayer}
+        title="X"
+        />
         </View>
       </View>
     );
