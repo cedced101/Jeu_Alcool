@@ -5,7 +5,7 @@ const InputPlayer = ({ inputValue, onChangeText, onDoneAddItem }) => (
     style={styles.input}
     value={inputValue}
     onChangeText={onChangeText}
-    placeholder="Type here to add note."
+    placeholder="Add player..."
     multiline={true}
     autoCapitalize="sentences"
     underlineColorAndroid="transparent"
