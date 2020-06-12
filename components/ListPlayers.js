@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import { View, Button, Text, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 const { height, width } = Dimensions.get('window');
+
 class ListPlayers extends Component {
+
   render() {
-    const { text, id } = this.props;
+    const { name, id, delPlayer, score } = this.props;
+
     return(
       <View style ={styles.container}>
         <View style ={styles.column}>
-          <Text>{text}</Text>
+          <View style = {styles.viewStyle}>
+            <Text style ={styles.textStyle}>{name}</Text>
+            <Button
+            onPress={() => delPlayer(id)}
+            title="X"
+            />
+          </View>
         </View>
         <View style ={styles.column}>
-        <Button
-        onPress={this.props.delPlayer}
-        title="X"
-        />
+
         </View>
       </View>
     );
@@ -22,11 +28,11 @@ class ListPlayers extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: width -50,
+    width: 150,
     flexDirection: 'row',
     borderRadius: 5,
     backgroundColor: 'white',
-    height: width / 8,
+    height: 150,
     alignItems: 'center',
     justifyContent: 'space-between',
     marginVertical: 5
@@ -35,6 +41,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     width: width / 1.5
+  },
+  textStyle: {
+    alignItems: 'center',
+    paddingRight: 10
+  },
+  viewStyle:{
+    paddingLeft: 45,
   }
 });
 export default ListPlayers;

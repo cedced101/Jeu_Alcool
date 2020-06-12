@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, View, Text, SafeAreaView } from 'react-native';
+import { Button, View, Text, SafeAreaView, StyleSheet } from 'react-native';
 import Challenges from '../components/Challenges.js';
 import Popups from '../components/Popups.js';
 
@@ -10,26 +10,18 @@ const Information = ({ navigation, route }) => {
   const [state] = React.useState(challState);
   const instruction = (state ? "Félicitations!" : "Bois dumbass");
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1, padding: 16 }}>
+    <SafeAreaView
+      style={styles.safeAreaStyle}>
+      <View
+        style={styles.viewStyle}>
         <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
+          style={styles.secondViewStyle}>
           <Text
-          style={{
-            fontSize: 25,
-            textAlign: 'center',
-            marginBottom: 16
-          }}>
+          style={styles.textStyle}>
           {instruction}
           </Text>
           <Text
-          style={{
-            textAlign: 'center'
-          }}>
+          style={styles.secondTextStyle}>
           + {JSON.stringify(newPoints)} points!
           {"\n"}
           {"\n"}
@@ -47,7 +39,29 @@ const Information = ({ navigation, route }) => {
       </View>
     </SafeAreaView>
   );
-
 }
+
+const styles = StyleSheet.create({
+  safeAreaStyle: {
+    flex: 1
+  },
+  viewStyle: {
+    flex: 1 ,
+    padding: 16
+  },
+  secondViewStyle: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textStyle: {
+    fontSize: 25,
+    textAlign: 'center',
+    marginBottom: 16
+  },
+  secondTextStyle: {
+    textAlign: 'center'
+  }
+});
 
 export default Information;

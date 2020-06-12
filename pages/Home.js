@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, View, Text, SafeAreaView } from 'react-native';
+import { Button, View, Text, SafeAreaView, StyleSheet } from 'react-native';
 import Challenges from '../components/Challenges.js';
 import Popups from '../components/Popups.js';
 var score = 0;
@@ -18,6 +18,7 @@ const Home = ({ navigation, route }) => {
   }, [route.params?.players]);
   var players = route.params?.players;
   if (allPlayers.length == 0) {
+
     allPlayers = JSON.parse(players);
   }
 
@@ -42,30 +43,18 @@ const Home = ({ navigation, route }) => {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1 , padding: 16}}>
+    <SafeAreaView style={styles.safeAreaStyle}>
+      <View style={styles.viewStyle}>
         <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}>
+        style={styles.secondViewStyle}>
           <Text
-          style={{
-            fontSize: 25,
-            textAlign: 'center',
-            marginBottom: 16
-          }}>
+          style={styles.textStyle}>
           C'est le tour de {allPlayers[turnNum].name}
           {"\n"}{"\n"}
           {word}
           </Text>
           <Text
-          style={{
-            fontSize: 25,
-            textAlign: 'center',
-            marginBottom: 16
-          }}>
+          style={styles.textStyle}>
           Vous avez {allPlayers[turnNum].score} points!
           </Text>
           <View>
@@ -113,5 +102,25 @@ const Home = ({ navigation, route }) => {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  safeAreaStyle: {
+    flex: 1
+  },
+  viewStyle: {
+    flex: 1 ,
+    padding: 16
+  },
+  secondViewStyle: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textStyle: {
+    fontSize: 25,
+    textAlign: 'center',
+    marginBottom: 16
+  }
+});
 
 export default Home;

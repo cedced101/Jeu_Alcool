@@ -1,12 +1,11 @@
 import React from 'react';
-import { Button, View, Text, SafeAreaView, TextInput, ScrollView } from 'react-native';
+import { Button, View, Text, SafeAreaView, TextInput, ScrollView, StyleSheet } from 'react-native';
 import uuid from 'uuid/v1';
 import ListPlayers from '../components/ListPlayers';
 import InputPlayer from '../components/InputPlayer';
 var cpt = 0;
 const players = [
 ];
-
 /*class FillScrollView extends React.Component {
   render(){
     return(
@@ -146,9 +145,12 @@ onDoneAddItem = () => {
         const newItemObject = {
           [id]: {
             id,
-            text: inputValue
+            name: inputValue,
+            score: 0
           }
         };
+//        allPlayers[cpt] = newItemObject;
+        cpt++;
         const newState = {
           ...prevState,
           inputValue: '',
@@ -161,28 +163,33 @@ onDoneAddItem = () => {
       });
     }
   };
-  delPlayer = () => {
-    alert(players);
+  delPlayer = id => {
+    this.setState(prevState => {
+    const allItems = prevState.allItems;
+    delete allItems[id];
+    const newState = {
+      ...prevState,
+      ...allItems
+    };
+    return {...newState};
+    });
+  }
+/*    alert(players);
     if (players.length > 0)
     {
       alert(players);
       players.splice(-1,1);
       alert(players);
     }
-  }
+  }*/
 
   render() {
-//    var allPlayers = [];
+    var allPlayers = [];
     const { inputValue, allItems } = this.state;
     return(
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ flex: 1 , padding: 16}}>
-          <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
+      <SafeAreaView style={styles.safeAreaStyle}>
+        <View style={styles.viewStyle}>
+          <View>
             <InputPlayer
             inputValue={inputValue}
             onChangeText={this.newInputValue}
@@ -190,21 +197,26 @@ onDoneAddItem = () => {
           />
             <Button
             onPress={() => {
-              allPlayers = players;
-              //NavigateHome();
+              allPlayers = Object.values(allItems);
+              if(allPlayers != null){
               this.props.navigation.navigate('Home', {
                 players: JSON.stringify(allPlayers)
               });
+            }
+            else{
+              alert("Vous devez d'abord ajouter des joueurs");
+            }
             }}
             title="Go"
             />
-            <ScrollView delPlayer={this.delPlayer}>
+            <ScrollView>
             {Object.values(allItems)
                 .reverse()
                 .map(item => (
                   <ListPlayers
                     key={item.id}
                     {...item}
+                    delPlayer={this.delPlayer}
                   />
                 ))}
             </ScrollView>
@@ -214,3 +226,12 @@ onDoneAddItem = () => {
     );
   }
 }
+const styles = StyleSheet.create({
+  safeAreaStyle: {
+    flex: 1
+  },
+  viewStyle: {
+    flex: 1 ,
+    padding: 16
+  },
+});
