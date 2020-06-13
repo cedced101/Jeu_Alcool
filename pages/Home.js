@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Button, View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { Button, View, Text, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import Challenges from '../components/Challenges.js';
 import Popups from '../components/Popups.js';
+import ListPlayers from '../components/ListPlayers';
 var score = 0;
 var turnNum = 0;
 var turnCount = 0;
@@ -44,6 +45,18 @@ const Home = ({ navigation, route }) => {
 
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
+      <View style={styles.viewPlayers}>
+        <ScrollView>
+        {Object.values(allPlayers)
+            .reverse()
+            .map(item => (
+              <ListPlayers
+                key={item.id}
+                {...item}
+              />
+            ))}
+        </ScrollView>
+      </View>
       <View style={styles.viewStyle}>
         <View
         style={styles.secondViewStyle}>
@@ -105,10 +118,15 @@ const Home = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   safeAreaStyle: {
-    flex: 1
+    flex: 1,
+    flexDirection: 'row'
+  },
+  viewPlayers:{
+    alignItems:'flex-start'
   },
   viewStyle: {
     flex: 1 ,
+    alignItems: 'flex-end',
     padding: 16
   },
   secondViewStyle: {

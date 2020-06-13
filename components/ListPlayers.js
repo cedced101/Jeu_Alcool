@@ -9,18 +9,15 @@ class ListPlayers extends Component {
 
     return(
       <View style ={styles.container}>
-        <View style ={styles.column}>
-          <View style = {styles.viewStyle}>
-            <Text style ={styles.textStyle}>{name}</Text>
-            <Button
-            onPress={() => delPlayer(id)}
-            title="X"
-            />
+          <View style = {styles.viewTuile}>
+            <View style = {styles.viewItem}>
+              <Text style ={styles.textStyle}>{name}</Text>
+              <Button
+              onPress={() => delPlayer(id)}
+              title="X"
+              />
+            </View>
           </View>
-        </View>
-        <View style ={styles.column}>
-
-        </View>
       </View>
     );
   }
@@ -28,26 +25,15 @@ class ListPlayers extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 50,
+  },
+  viewTuile:{
     width: 150,
-    flexDirection: 'row',
-    borderRadius: 5,
-    backgroundColor: 'white',
     height: 150,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginVertical: 5
+    backgroundColor: 'white',
   },
-  column: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: width / 1.5
-  },
-  textStyle: {
-    alignItems: 'center',
-    paddingRight: 10
-  },
-  viewStyle:{
-    paddingLeft: 45,
+  viewItem:{
+    alignItems: 'center'
   }
 });
 export default ListPlayers;
