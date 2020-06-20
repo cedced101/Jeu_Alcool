@@ -82,6 +82,12 @@ onDoneAddItem = () => {
             }}
             title="Go"
             />
+            <Button
+            onPress={() => {
+              this.props.navigation.navigate('Parameters');            
+            }}
+            title="Go to Parameters"
+            />
             <View style={styles.viewPlayers}>
               <ScrollView>
               {Object.values(allItems)

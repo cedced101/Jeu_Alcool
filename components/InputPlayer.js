@@ -5,11 +5,7 @@ const InputPlayer = ({ inputValue, onChangeText, onDoneAddItem }) => (
     style={styles.input}
     value={inputValue}
     onChangeText={onChangeText}
-<<<<<<< HEAD
-    placeholder="Player name"
-=======
     placeholder="Add player..."
->>>>>>> e50fb4a905da7cf4c7ac29bf529b9f1a00345811
     multiline={true}
     autoCapitalize="sentences"
     underlineColorAndroid="transparent"

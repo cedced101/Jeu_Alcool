@@ -3,19 +3,19 @@ import { View, Button, Text, TouchableOpacity, StyleSheet, Dimensions} from 'rea
 const { height, width } = Dimensions.get('window');
 
 class ListPlayers extends Component {
-
   render() {
     const { name, id, delPlayer, score } = this.props;
-
     return(
-      <View style ={styles.container}>
+      <View horizontal={true} style ={styles.container}>
           <View style = {styles.viewTuile}>
             <View style = {styles.viewItem}>
               <Text style ={styles.textStyle}>{name}</Text>
-              <Button
-              onPress={() => delPlayer(id)}
-              title="X"
-              />
+              <View>
+                <Button
+                  onPress={() => delPlayer(id)}
+                  title="X"
+                />
+              </View>
             </View>
           </View>
       </View>
@@ -24,13 +24,15 @@ class ListPlayers extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  container:{
     marginTop: 50,
   },
   viewTuile:{
-    width: 150,
-    height: 150,
+    width: 185,
+    height: 185,
     backgroundColor: 'white',
+    borderColor: 'black',
+    marginRight: 10
   },
   viewItem:{
     alignItems: 'center'

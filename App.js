@@ -59,6 +59,20 @@ function App() {
             },
           }}
         />
+        <Stack.Screen
+          name="Parameters"
+          component={Parameters}
+          options={{
+            title: 'Parameters', //Set Header Title
+            headerStyle: {
+              backgroundColor: '#f4511e', //Set Header color
+            },
+            headerTintColor: '#fff', //Set Header text color
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
