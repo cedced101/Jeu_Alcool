@@ -49,10 +49,13 @@ const Home = ({ navigation, route }) => {
         <ScrollView>
         {Object.values(allPlayers)
             .reverse()
-            .map(item => (
+            .map((item, index) => (
               <ListPlayers
                 key={item.id}
+                index={index}
                 {...item}
+                isDeletable={false}
+                turnCount={turnNum}
               />
             ))}
         </ScrollView>

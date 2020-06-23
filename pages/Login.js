@@ -84,7 +84,7 @@ onDoneAddItem = () => {
             />
             <Button
             onPress={() => {
-              this.props.navigation.navigate('Parameters');            
+              this.props.navigation.navigate('Parameters');
             }}
             title="Go to Parameters"
             />
@@ -97,6 +97,8 @@ onDoneAddItem = () => {
                       key={item.id}
                       {...item}
                       delPlayer={this.delPlayer}
+                      isDeletable={true}
+                      turnCount={-1}
                     />
                   ))}
               </ScrollView>

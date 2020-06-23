@@ -4,17 +4,19 @@ const { height, width } = Dimensions.get('window');
 
 class ListPlayers extends Component {
   render() {
-    const { name, id, delPlayer, score } = this.props;
+    const { name, id, delPlayer, score, isDeletable, turnCount, index } = this.props;
     return(
       <View horizontal={true} style ={styles.container}>
-          <View style = {styles.viewTuile}>
+          <View style = {[styles.viewTuile, turnCount == index ? { backgroundColor:'blue' } : {}]}>
             <View style = {styles.viewItem}>
-              <Text style ={styles.textStyle}>{name}</Text>
+            <Text style ={[styles.textStyle, turnCount == index ? { color:'white' } : {}]}>{name}</Text>
               <View>
-                <Button
-                  onPress={() => delPlayer(id)}
-                  title="X"
-                />
+                {isDeletable &&
+                  <Button
+                    onPress={() => delPlayer(id)}
+                    title="X"
+                  />
+                }
               </View>
             </View>
           </View>
