@@ -3,13 +3,17 @@ import { Button, View, Text, SafeAreaView, TextInput, ScrollView, StyleSheet } f
 import uuid from 'uuid/v1';
 import ListPlayers from '../components/ListPlayers';
 import InputPlayer from '../components/InputPlayer';
+import '../App';
 var maxPoint = 6;
 var maxRound = 2;
+var allPlayers = [];
+var players = route.params?.players;
 
 export default class Parameters extends React.Component {
-
   render() {
-    const { inputValue, allItems } = this.state;
+    if (allPlayers.length == 0) {
+      allPlayers = JSON.parse(players);
+    }
     return(
       <SafeAreaView style={styles.safeAreaStyle}>
         <View style={styles.viewStyle}>
@@ -19,6 +23,7 @@ export default class Parameters extends React.Component {
             onPress={() => {
               var newMaxPoint = 2;
               maxPoint += newMaxPoint;
+              alert(maxPoint);
             }}
             title= "+"
             />
@@ -26,6 +31,7 @@ export default class Parameters extends React.Component {
             onPress={() => {
               var newMaxPoint = 2;
               maxPoint -= newMaxPoint;
+              alert(maxPoint);
             }}
             title= "-"
             />
@@ -35,6 +41,7 @@ export default class Parameters extends React.Component {
             onPress={() => {
               var newMaxRound = 1;
               maxRound += newMaxRound;
+              alert(maxRound);
             }}
             title= "+"
             />
@@ -42,10 +49,18 @@ export default class Parameters extends React.Component {
             onPress={() => {
               var newMaxRound = 1;
               maxRound -= newMaxRound;
+              alert(maxRound);
             }}
             title= "-"
             />
             <Text>{maxRound}</Text>
+            <Button
+            onPress={() => {
+              this.props.navigation.navigate('Home')
+              }
+            }
+            title="Start game"
+            />
           </View>
         </View>
       </SafeAreaView>

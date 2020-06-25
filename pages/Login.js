@@ -84,7 +84,12 @@ onDoneAddItem = () => {
             />
             <Button
             onPress={() => {
-              this.props.navigation.navigate('Parameters');
+              allPlayers = Object.values(allItems);
+              if(allPlayers != null){
+                this.props.navigation.navigate('Parameters', {
+                  players: JSON.stringify(allPlayers)
+                });
+              }
             }}
             title="Go to Parameters"
             />
