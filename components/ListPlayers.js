@@ -9,15 +9,15 @@ class ListPlayers extends Component {
       <View horizontal={true} style ={styles.container}>
           <View style = {[styles.viewTuile, turnCount == index ? { backgroundColor:'blue' } : {}]}>
             <View style = {styles.viewItem}>
-            <Text style ={[styles.textStyle, turnCount == index ? { color:'white' } : {}]}>{name}</Text>
-              <View>
-                {isDeletable &&
-                  <Button
-                    onPress={() => delPlayer(id)}
-                    title="X"
-                  />
-                }
-              </View>
+            <View style = {styles.delButton}>
+              {isDeletable &&
+                <Button color="#ff5c5c"
+                  onPress={() => delPlayer(id)}
+                  title="X"
+                />
+              }
+            </View>
+            <View style = {styles.playerName}><Text style ={[styles.textStyle, turnCount == index ? { color:'white' } : {}]}>{name}</Text></View>
             </View>
           </View>
       </View>
@@ -26,18 +26,31 @@ class ListPlayers extends Component {
 }
 
 const styles = StyleSheet.create({
-  container:{
-    marginTop: 50,
+  container: {
+    marginTop: 50
   },
-  viewTuile:{
+  viewTuile: {
     width: 185,
     height: 185,
     backgroundColor: 'white',
     borderColor: 'black',
-    marginRight: 10
+    marginRight: 10,
+    borderRadius: 10
   },
-  viewItem:{
+  viewItem: {
     alignItems: 'center'
+  },
+  delButton: {
+    alignSelf: 'flex-start'
+  },
+  playerName: {
+    marginTop: 35
+  },
+  textStyle: {
+    fontSize: 25,
+    textAlign: 'center',
+    alignSelf: 'center',
+    marginBottom: 16
   }
 });
 export default ListPlayers;

@@ -67,7 +67,7 @@ onDoneAddItem = () => {
             inputValue={inputValue}
             onChangeText={this.newInputValue}
             onDoneAddItem={this.onDoneAddItem}
-          />
+            />
             <Button
             onPress={() => {
               allPlayers = Object.values(allItems);
