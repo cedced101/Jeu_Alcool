@@ -112,19 +112,7 @@ onDoneAddItem = () => {
               alert("Vous devez d'abord ajouter des joueurs");
             }
             }}
-            title="Go"
-            />
-            <Button
-            onPress={() => {
-              allPlayers = Object.values(allItems);
-              if(allPlayers != null){
-                this.props.navigation.navigate('Parameters', {
-                  players: JSON.stringify(allPlayers),
-
-                });
-              }
-            }}
-            title="Go to Parameters"
+            title="Start"
             />
             <Text>Choose max points:</Text>
             <Button

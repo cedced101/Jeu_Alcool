@@ -9,7 +9,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './pages/Home';
 import Information from './pages/Information';
 import Login from './pages/Login';
-import Parameters from './pages/Parameters';
 
 const Stack = createStackNavigator();
 
@@ -50,20 +49,6 @@ function App() {
           component={Information}
           options={{
             title: 'Information', //Set Header Title
-            headerStyle: {
-              backgroundColor: '#f4511e', //Set Header color
-            },
-            headerTintColor: '#fff', //Set Header text color
-            headerTitleStyle: {
-              fontWeight: 'bold', //Set Header text style
-            },
-          }}
-        />
-        <Stack.Screen
-          name="Parameters"
-          component={Parameters}
-          options={{
-            title: 'Parameters', //Set Header Title
             headerStyle: {
               backgroundColor: '#f4511e', //Set Header color
             },

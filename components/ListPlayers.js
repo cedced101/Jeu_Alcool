@@ -17,7 +17,7 @@ class ListPlayers extends Component {
                 />
               }
             </View>
-            <View style = {styles.playerName}><Text style ={[styles.textStyle, turnCount == index ? { color:'white' } : {}]}>{name}{'\n'}{'\n'}Points: {score}</Text></View>
+            <View style = {styles.playerName}><Text style ={[styles.textStyle, turnCount == index ? { color:'white' } : {}]}>{name}{'\n'}Points: {score}</Text></View>
             </View>
           </View>
       </View>
@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
     marginTop: 50
   },
   viewTuile: {
-    width: 185,
-    height: 185,
+    width: 150,
+    height: 150,
     backgroundColor: 'white',
     borderColor: 'black',
     marginRight: 10,
