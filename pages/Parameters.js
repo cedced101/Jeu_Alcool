@@ -3,63 +3,67 @@ import { Button, View, Text, SafeAreaView, TextInput, ScrollView, StyleSheet } f
 import uuid from 'uuid/v1';
 import ListPlayers from '../components/ListPlayers';
 import InputPlayer from '../components/InputPlayer';
-import '../App';
 var maxPoint = 6;
 var maxRound = 2;
 var allPlayers = [];
-var players = route.params?.players;
+//var players = route.params?.players;
 
 export default class Parameters extends React.Component {
+  state = {
+    pointValue: maxPoint,
+    roundValue: maxRound
+  }
+  upMaxPoints = () => {
+    this.setState({
+      pointValue: this.state.pointValue +2
+    })
+  }
+  downMaxPoints = () => {
+    this.setState({
+      pointValue: this.state.pointValue -2
+    })
+  }
+  upMaxRounds = () => {
+    this.setState({
+      roundValue: this.state.roundValue +1
+    })
+  }
+  downMaxRounds = () => {
+    this.setState({
+      roundValue: this.state.roundValue -1
+    })
+  }
   render() {
-    if (allPlayers.length == 0) {
-      allPlayers = JSON.parse(players);
-    }
     return(
       <SafeAreaView style={styles.safeAreaStyle}>
         <View style={styles.viewStyle}>
           <View>
             <Text>Choose max points:</Text>
             <Button
-            onPress={() => {
-              var newMaxPoint = 2;
-              maxPoint += newMaxPoint;
-              alert(maxPoint);
-            }}
-            title= "+"
+              onPress={this.upMaxPoints}
+              title= "+"
             />
             <Button
-            onPress={() => {
-              var newMaxPoint = 2;
-              maxPoint -= newMaxPoint;
-              alert(maxPoint);
-            }}
-            title= "-"
+              onPress={this.downMaxPoints}
+              title= "-"
             />
-            <Text>{maxPoint}</Text>
+            <Text>{this.state.pointValue}</Text>
             <Text>Choose max rounds:</Text>
             <Button
-            onPress={() => {
-              var newMaxRound = 1;
-              maxRound += newMaxRound;
-              alert(maxRound);
-            }}
-            title= "+"
+              onPress={this.upMaxRounds}
+              title= "+"
             />
             <Button
-            onPress={() => {
-              var newMaxRound = 1;
-              maxRound -= newMaxRound;
-              alert(maxRound);
-            }}
-            title= "-"
+              onPress={this.downMaxRounds}
+              title= "-"
             />
-            <Text>{maxRound}</Text>
+            <Text>{this.state.roundValue}</Text>
             <Button
-            onPress={() => {
-              this.props.navigation.navigate('Home')
+              onPress={() => {
+                  this.props.navigation.navigate('Home')
+                }
               }
-            }
-            title="Start game"
+              title="Start game"
             />
           </View>
         </View>

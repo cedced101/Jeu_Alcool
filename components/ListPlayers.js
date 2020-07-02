@@ -17,7 +17,7 @@ class ListPlayers extends Component {
                 />
               }
             </View>
-            <View style = {styles.playerName}><Text style ={[styles.textStyle, turnCount == index ? { color:'white' } : {}]}>{name}</Text></View>
+            <View style = {styles.playerName}><Text style ={[styles.textStyle, turnCount == index ? { color:'white' } : {}]}>{name}{'\n'}{'\n'}Points: {score}</Text></View>
             </View>
           </View>
       </View>

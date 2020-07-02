@@ -4,6 +4,8 @@ import uuid from 'uuid/v1';
 import ListPlayers from '../components/ListPlayers';
 import InputPlayer from '../components/InputPlayer';
 var cpt = 0;
+var maxPoint = 6;
+var maxRound = 2;
 const players = [
 ];
 
@@ -12,13 +14,41 @@ export default class Login extends React.Component {
     inputValue: '',
     loadingItems: false,
     allItems: {},
-    isCompleted: false
+    isCompleted: false,
+    pointValue: maxPoint,
+    roundValue: maxRound
   };
+
   newInputValue = value => {
-  this.setState({
-    inputValue: value
-  });
-};
+    this.setState({
+      inputValue: value
+    })
+  };
+
+  upMaxPoints = () => {
+    this.setState({
+      pointValue: this.state.pointValue +2
+    })
+  };
+
+  downMaxPoints = () => {
+    this.setState({
+      pointValue: this.state.pointValue -2
+    })
+  };
+
+  upMaxRounds = () => {
+    this.setState({
+      roundValue: this.state.roundValue +1
+    })
+  };
+
+  downMaxRounds = () => {
+    this.setState({
+      roundValue: this.state.roundValue -1
+    })
+  };
+
 onDoneAddItem = () => {
     const { inputValue } = this.state;
     if (inputValue !== '') {
@@ -73,7 +103,9 @@ onDoneAddItem = () => {
               allPlayers = Object.values(allItems);
               if(allPlayers != null){
               this.props.navigation.navigate('Home', {
-                players: JSON.stringify(allPlayers)
+                players: JSON.stringify(allPlayers),
+                pointValue : JSON.stringify(maxPoint),
+                roundValue: JSON.stringify(maxRound)
               });
             }
             else{
@@ -87,12 +119,33 @@ onDoneAddItem = () => {
               allPlayers = Object.values(allItems);
               if(allPlayers != null){
                 this.props.navigation.navigate('Parameters', {
-                  players: JSON.stringify(allPlayers)
+                  players: JSON.stringify(allPlayers),
+
                 });
               }
             }}
             title="Go to Parameters"
             />
+            <Text>Choose max points:</Text>
+            <Button
+              onPress={this.upMaxPoints}
+              title= "+"
+            />
+            <Button
+              onPress={this.downMaxPoints}
+              title= "-"
+            />
+            <Text>{this.state.pointValue}</Text>
+            <Text>Choose max rounds:</Text>
+            <Button
+              onPress={this.upMaxRounds}
+              title= "+"
+            />
+            <Button
+              onPress={this.downMaxRounds}
+              title= "-"
+            />
+            <Text>{this.state.roundValue}</Text>
             <View style={styles.viewPlayers}>
               <ScrollView>
               {Object.values(allItems)

@@ -3,6 +3,7 @@ import { Button, View, Text, SafeAreaView, ScrollView, StyleSheet } from 'react-
 import Challenges from '../components/Challenges.js';
 import Popups from '../components/Popups.js';
 import ListPlayers from '../components/ListPlayers';
+import { NavigationActions } from 'react-navigation';
 var score = 0;
 var turnNum = 0;
 var turnCount = 0;
@@ -18,6 +19,8 @@ const Home = ({ navigation, route }) => {
     }
   }, [route.params?.players]);
   var players = route.params?.players;
+  var maxPoint = route.params?.pointValue;
+  var maxRound = route.params?.roundValue;
   if (allPlayers.length == 0) {
 
     allPlayers = JSON.parse(players);
@@ -42,81 +45,89 @@ const Home = ({ navigation, route }) => {
   if (turnCount != 0 && turnNum == 0) {
     alert(Popups[popupIndex]);
   }
-
-  return (
-    <SafeAreaView style={styles.safeAreaStyle}>
-      <View style={styles.viewPlayers}>
-        <ScrollView>
-        {Object.values(allPlayers)
-            .reverse()
-            .map((item, index) => (
-              <ListPlayers
-                key={item.id}
-                index={index}
-                {...item}
-                isDeletable={false}
-                turnCount={turnNum}
-              />
-            ))}
-        </ScrollView>
-      </View>
-      <View style={styles.viewStyle}>
-        <View
-        style={styles.secondViewStyle}>
-          <Text
-          style={styles.textStyle}>
-          C'est le tour de {allPlayers[turnNum].name}
-          {"\n"}{"\n"}
-          {word}
-          </Text>
-          <Text
-          style={styles.textStyle}>
-          Vous avez {allPlayers[turnNum].score} points!
-          </Text>
-          <View>
-            <Button
-            onPress={() => {
-              var newPoints = Math.floor(Math.random() * 4 + 2);
-              allPlayers[turnNum].score += newPoints;
-              var currentScore = allPlayers[turnNum].score;
-              if (turnNum >= allPlayers.length - 1) {
-                turnNum = 0;
-                turnCount++;
-              }
-              else {
-                turnNum++;
-              }
-              navigation.navigate('Information', {
-                newPoints: newPoints,
-                challState: true,
-                currentScore: currentScore,
-              });
-            }}
-            title="Réussi"
-            />
-            <Button
-            onPress={() => {
-              var currentScore = allPlayers[turnNum].score;
-              if (turnNum >= allPlayers.length - 1) {
-                turnNum = 0;
-                turnCount++;
-              }
-              else {
-                turnNum++;
-              }
-              navigation.navigate('Information', {
-                newPoints: 0,
-                challState: false,
-                currentScore: currentScore,
-              });
-            }}
-            title="Raté"
-            />
+  if(allPlayers[turnNum].score >= maxPoint){
+    alert('Partie terminée');
+    for( var cpt =0; cpt <= allPlayers.lenght; cpt++)
+    {
+      var test = 0;
+      allPlayers[turnNum].score = test;
+    }
+  }
+    return (
+      <SafeAreaView style={styles.safeAreaStyle}>
+        <Text>
+        Max points: {maxPoint} Max Rounds: {maxRound}
+        </Text>
+        <View>
+          <View style={styles.viewPlayers}>
+            <ScrollView>
+            {Object.values(allPlayers)
+                .reverse()
+                .map((item, index) => (
+                  <ListPlayers
+                    key={item.id}
+                    index={index}
+                    {...item}
+                    isDeletable={false}
+                    turnCount={turnNum}
+                  />
+                ))}
+            </ScrollView>
+          </View>
+          <View style={styles.viewStyle}>
+            <View
+            style={styles.secondViewStyle}>
+              <Text
+              style={styles.textStyle}>
+              C'est le tour de {allPlayers[turnNum].name}
+              {"\n"}{"\n"}
+              {word}
+              </Text>
+              <View>
+                <Button
+                onPress={() => {
+                  var newPoints = Math.floor(Math.random() * 4 + 2);
+                  allPlayers[turnNum].score += newPoints;
+                  var currentScore = allPlayers[turnNum].score;
+                  if (turnNum >= allPlayers.length - 1) {
+                    turnNum = 0;
+                    turnCount++;
+                  }
+                  else {
+                    turnNum++;
+                  }
+                  navigation.navigate('Information', {
+                    newPoints: newPoints,
+                    challState: true,
+                    currentScore: currentScore,
+                  });
+                }}
+                title="Réussi"
+                />
+                <Button
+                onPress={() => {
+                  var currentScore = allPlayers[turnNum].score;
+                  if (turnNum >= allPlayers.length - 1) {
+                    turnNum = 0;
+                    turnCount++;
+                  }
+                  else {
+                    turnNum++;
+                  }
+                  navigation.navigate('Information', {
+                    newPoints: 0,
+                    challState: false,
+                    currentScore: currentScore,
+                  });
+                }}
+                title="Raté"
+                />
+              </View>
+            </View>
           </View>
         </View>
-      </View>
-    </SafeAreaView>
-  );
+      </SafeAreaView>
+    );
 }
 
 const styles = StyleSheet.create({
